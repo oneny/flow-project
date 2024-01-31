@@ -27,6 +27,8 @@ fixedExtensions.forEach((extension) => {
         inputElement.checked = true;
     }
 
+    inputElement.addEventListener('click', handleClickFixedExtension);
+
     liElement.classList.add('fixed-checkbox-item')
     liElement.append(inputElement, spanElement);
     $fixedCheckboxList.appendChild(liElement);
@@ -47,5 +49,7 @@ notCheckedFixedExtensions.forEach((extension) => {
 });
 
 async function requestAllExtensions() {
-    return await fetch('/extensions').then(res => res.json());
+    return await fetch('/extensions')
+        .then(res => res.json())
+        .then(data => data.result);
 }
