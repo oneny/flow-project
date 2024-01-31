@@ -77,22 +77,23 @@ li {
     border-radius: 5px;
     color: #2c2a34;
     background: #fff;
-    border: 1px solid #656173;
+    border: 1px solid #2c2a34;
 }
 
 .extension-add-btn {
     padding: 5px 10px;
     border-radius: 5px;
     color: #fff;
-    background: #656173;
-    border: 1px solid #656173;
+    background: #2c2a34;
+    border: 1px solid #2c2a34;
+    cursor: pointer;
 }
 
 .custom-input-item {
     display: flex;
     flex-direction: column;
     row-gap: 10px;
-    border: 1px solid #656173;
+    border: 1px solid #2c2a34;
     border-radius: 5px;
     padding: 10px;
 }
