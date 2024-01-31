@@ -1,6 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html lang="ko">
 <head>
-    <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/css/style.css">
     <title>Extension Application</title>
 </head>
@@ -24,8 +25,8 @@
                                 <button class="extension-add-btn">+ 추가</button>
                             </li>
                             <li class="custom-input-item">
-                                <div><span>0</span> / 200</div>
-                                <ul></ul>
+                                <div class="custom-extension-size"><span>0</span> / 200</div>
+                                <ul class="custom-extension-list"></ul>
                             </li>
                         </ul>
                     </li>
@@ -33,6 +34,6 @@
             </div>
         </div>
 
-        <script src="/js/main.js" type="application/javascript"></script>
+        <script src="/js/main.js" type="module"></script>
     </body>
 </html>
