@@ -1,0 +1,19 @@
+jasypt:
+  encryptor:
+    password: ${JASYPT_PASSWORD}
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/view/
+      suffix: .jsp
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ENC(5P345O1flN+Mgq+WmZPBKB1TqDYShiDG3+o/TmVLWIIU9Qy9mPo7z62mT7t0L8p4CAH5REOA/WxoWPQxvlVEwWePmVxFH1/q)
+    username: ENC(R5wYtFLPzE8j1dYaLN8JHw==)
+    password: ENC(2VRZJBlof9rNUyol/Olzw9LAaWzcDfRC)
+mybatis:
+  type-aliases-package: com.flow.extension.domain.*.entity, com.flow.extension.domain.*.dto.response
+  configuration:
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+  mapper-locations: mybatis/mapper/**/*.xml
