@@ -41,6 +41,7 @@ notCheckedFixedExtensions.forEach((extension) => {
     spanElement.textContent = extension;
     buttonElement.textContent = 'X';
 
+    liElement.classList.add('custom-extension-item')
     liElement.append(spanElement, buttonElement);
     $customExtensionList.appendChild(liElement);
 });

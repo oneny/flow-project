@@ -97,3 +97,22 @@ li {
     border-radius: 5px;
     padding: 10px;
 }
+
+.custom-extension-list {
+    display: flex;
+    gap: 8px;
+}
+
+.custom-extension-item {
+    display: flex;
+    column-gap: 3px;
+    padding: 3px 5px;
+    border: 1px solid #2c2a34;
+    border-radius: 5px;
+}
+
+.custom-extension-item > button {
+    border: none;
+    background: #fff;
+    cursor: pointer;
+}
