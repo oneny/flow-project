@@ -1,0 +1,98 @@
+/* Resets */
+body, header, h1, h2, h3, main,
+section, ul, li, button, div,
+input, span, strong {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1, h2, h3, strong {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+li {
+    list-style-type: none;
+}
+
+.extension-container {
+    font-size: 14px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space:nowrap;
+}
+
+.extension-wrapper {
+    width: 70%;
+}
+
+.extension-header {
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #fff;
+    background: #ffb800;
+    border-radius: 10px;
+}
+
+.extension-content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.extension-item {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.extension-item-title {
+    text-align: left;
+}
+
+.fixed-checkbox-list {
+    display: flex;
+    column-gap: 15px;
+    flex-flow: row wrap;
+}
+
+.fixed-checkbox-item {
+    display: flex;
+    column-gap: 5px;
+}
+
+.custom-input-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.extension-custom-input {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #2c2a34;
+    background: #fff;
+    border: 1px solid #656173;
+}
+
+.extension-add-btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+    background: #656173;
+    border: 1px solid #656173;
+}
+
+.custom-input-item {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    border: 1px solid #656173;
+    border-radius: 5px;
+    padding: 10px;
+}
