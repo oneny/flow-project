@@ -2,12 +2,12 @@ package com.flow.extension.domain.extension.entity;
 
 import java.time.LocalDateTime;
 
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
-@Builder
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Extension {
 
