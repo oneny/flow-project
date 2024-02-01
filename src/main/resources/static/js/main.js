@@ -94,6 +94,11 @@ async function handleAddCustomExtension() {
         return;
     }
 
+    if (notCheckedFixedExtensions.length >= 200) {
+        alert('커스텀 확장자는 최대 200까지만 등록이 가능합니다.');
+        return;
+    }
+
     await requestFetch('POST', {name: extension});
     notCheckedFixedExtensions = [...notCheckedFixedExtensions, extension];
     $customExtensionSizeSpan.textContent = notCheckedFixedExtensions.length;
