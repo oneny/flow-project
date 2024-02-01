@@ -25,7 +25,6 @@ fixedExtensions.forEach((extension) => {
 
     inputElement.type = 'checkbox';
     spanElement.textContent = extension;
-    console.log(extension);
 
     if (checkedFixedExtensions.includes(extension)) {
         inputElement.checked = true;
@@ -51,6 +50,7 @@ const renderNotCheckedFixedExtensions = () => {
 
         spanElement.textContent = extension;
         buttonElement.textContent = 'X';
+        buttonElement.addEventListener('click', handleDeleteCustomExtension(extension));
 
         liElement.classList.add('custom-extension-item')
         liElement.append(spanElement, buttonElement);
@@ -84,7 +84,7 @@ async function handleAddCustomExtension() {
         return;
     }
 
-    if (checkedFixedExtensions.includes(extension)) {
+    if (fixedExtensions.includes(extension)) {
         alert('고정 확장자에서 파일 확장자를 설정해주세요.');
         return;
     }
@@ -98,6 +98,15 @@ async function handleAddCustomExtension() {
     notCheckedFixedExtensions = [...notCheckedFixedExtensions, extension];
     $customExtensionSizeSpan.textContent = notCheckedFixedExtensions.length;
     renderNotCheckedFixedExtensions();
+}
+
+function handleDeleteCustomExtension(extension) {
+    return async () => {
+        await requestFetch('DELETE', {name: extension});
+        notCheckedFixedExtensions = notCheckedFixedExtensions.filter((e) => e !== extension);
+        $customExtensionSizeSpan.textContent = notCheckedFixedExtensions.length;
+        renderNotCheckedFixedExtensions();
+    };
 }
 
 async function requestFetch(method, body) {
