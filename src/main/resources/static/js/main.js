@@ -84,6 +84,11 @@ async function handleAddCustomExtension() {
         return;
     }
 
+    if (extension.length > 20) {
+        alert('커스텀 확장자 최대 입력 길이는 20자리까지 입니다.');
+        return;
+    }
+
     if (fixedExtensions.includes(extension)) {
         alert('고정 확장자에서 파일 확장자를 설정해주세요.');
         return;
