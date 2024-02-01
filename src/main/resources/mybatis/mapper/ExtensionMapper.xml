@@ -17,4 +17,10 @@
         DELETE FROM extension
         WHERE name = #{name}
     </delete>
+
+    <select id="findByName" resultType="Extension">
+        SELECT *
+        FROM extension
+        WHERE name = #{name}
+    </select>
 </mapper>

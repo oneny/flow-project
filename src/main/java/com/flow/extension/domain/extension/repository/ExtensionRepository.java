@@ -1,6 +1,7 @@
 package com.flow.extension.domain.extension.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -16,4 +17,6 @@ public interface ExtensionRepository {
 	void insertExtension(Extension extension);
 
 	void deleteExtension(Extension extension);
+
+	Optional<Extension> findByName(String name);
 }
