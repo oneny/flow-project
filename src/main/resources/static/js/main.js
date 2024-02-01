@@ -22,12 +22,13 @@ fixedExtensions.forEach((extension) => {
 
     inputElement.type = 'checkbox';
     spanElement.textContent = extension;
+    console.log(extension);
 
     if (checkedFixedExtensions.includes(extension)) {
         inputElement.checked = true;
     }
 
-    inputElement.addEventListener('click', handleClickFixedExtension);
+    inputElement.addEventListener('click', handleClickFixedExtension(extension));
 
     liElement.classList.add('fixed-checkbox-item')
     liElement.append(inputElement, spanElement);
@@ -50,6 +51,32 @@ notCheckedFixedExtensions.forEach((extension) => {
 
 async function requestAllExtensions() {
     return await fetch('/extensions')
-        .then(res => res.json())
-        .then(data => data.result);
+        .then((res) => res.json())
+        .then((data) => data.result);
+}
+
+function handleClickFixedExtension(extension) {
+    return async (e) => {
+        console.log(e.target.checked);
+        console.log(extension)
+        if (!e.target.checked) {
+            await requestFetch('DELETE', { name: extension });
+            return;
+        }
+
+        await requestFetch('POST', { name: extension });
+    }
+}
+
+async function requestFetch(method, body) {
+    await fetch('/extensions', {
+        method,
+        body: JSON.stringify(body),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+        .then((res) => res.json())
+        .then((data) => alert(data.message))
+        .catch((error) => alert(error.message));
 }
