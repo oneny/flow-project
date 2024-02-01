@@ -84,8 +84,8 @@ async function handleAddCustomExtension() {
         return;
     }
 
-    if (extension.length > 20) {
-        alert('커스텀 확장자 최대 입력 길이는 20자리까지 입니다.');
+    if (!/^[a-zA-Z]{1,20}$/.test(extension)) {
+        alert("커스텀 확장자는 영어 대소문자 및 최대 20자리까지 가능합니다.")
         return;
     }
 
@@ -105,6 +105,7 @@ async function handleAddCustomExtension() {
     }
 
     await requestFetch('POST', {name: extension});
+    $extensionCustomInput.value = '';
     notCheckedFixedExtensions = [...notCheckedFixedExtensions, extension];
     $customExtensionSizeSpan.textContent = notCheckedFixedExtensions.length;
     renderNotCheckedFixedExtensions();
