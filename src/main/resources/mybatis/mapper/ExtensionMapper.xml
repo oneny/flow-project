@@ -3,7 +3,9 @@
 <mapper namespace="com.flow.extension.domain.extension.repository.ExtensionRepository">
     
     <select id="findAll" resultType="Extension">
-        SELECT * FROM extension
+        SELECT *
+        FROM extension
+        ORDER BY id
     </select>
 
     <insert id="insertExtension" keyProperty="id" useGeneratedKeys="true">
