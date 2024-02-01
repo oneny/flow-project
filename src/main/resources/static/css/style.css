@@ -101,6 +101,7 @@ li {
 .custom-extension-list {
     display: flex;
     gap: 8px;
+    flex-flow: row wrap;
 }
 
 .custom-extension-item {

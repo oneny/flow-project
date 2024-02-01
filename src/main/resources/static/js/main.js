@@ -2,17 +2,20 @@ const $fixedCheckboxList = document.querySelector('.fixed-checkbox-list');
 const $customExtensionSizeSpan = document.querySelector('.custom-extension-size > span');
 const $customExtensionList = document.querySelector('.custom-extension-list');
 const fixedExtensions = ['bat', 'cmd', 'com', 'cpl', 'exe', 'scr', 'js'];
+const $extensionCustomInput = document.querySelector('.extension-custom-input');
+const $extensionAddBtn = document.querySelector('.extension-add-btn');
 
 const extensions = await requestAllExtensions();
 const checkedFixedExtensions = extensions
     .filter((extension) => fixedExtensions.includes((extension.name)))
     .map((extension) => extension.name);
-const notCheckedFixedExtensions = extensions
+let notCheckedFixedExtensions = extensions
     .filter((extension) => !fixedExtensions.includes((extension.name)))
     .map((extension) => extension.name);
 
 // 커스텀 확장자 개수
 $customExtensionSizeSpan.textContent = notCheckedFixedExtensions.length;
+$extensionAddBtn.addEventListener('click', handleAddCustomExtension);
 
 // 고정 확장자 노출
 fixedExtensions.forEach((extension) => {
@@ -36,18 +39,25 @@ fixedExtensions.forEach((extension) => {
 });
 
 // 커스텀 확장자 노출
-notCheckedFixedExtensions.forEach((extension) => {
-    const liElement = document.createElement('li');
-    const spanElement = document.createElement('span');
-    const buttonElement = document.createElement('button');
+const renderNotCheckedFixedExtensions = () => {
+    while ($customExtensionList.hasChildNodes()) {
+        $customExtensionList.removeChild($customExtensionList.firstChild);
+    }
 
-    spanElement.textContent = extension;
-    buttonElement.textContent = 'X';
+    notCheckedFixedExtensions.forEach((extension) => {
+        const liElement = document.createElement('li');
+        const spanElement = document.createElement('span');
+        const buttonElement = document.createElement('button');
 
-    liElement.classList.add('custom-extension-item')
-    liElement.append(spanElement, buttonElement);
-    $customExtensionList.appendChild(liElement);
-});
+        spanElement.textContent = extension;
+        buttonElement.textContent = 'X';
+
+        liElement.classList.add('custom-extension-item')
+        liElement.append(spanElement, buttonElement);
+        $customExtensionList.appendChild(liElement);
+    });
+}
+renderNotCheckedFixedExtensions();
 
 async function requestAllExtensions() {
     return await fetch('/extensions')
@@ -57,15 +67,37 @@ async function requestAllExtensions() {
 
 function handleClickFixedExtension(extension) {
     return async (e) => {
-        console.log(e.target.checked);
-        console.log(extension)
         if (!e.target.checked) {
-            await requestFetch('DELETE', { name: extension });
+            await requestFetch('DELETE', {name: extension});
             return;
         }
 
-        await requestFetch('POST', { name: extension });
+        await requestFetch('POST', {name: extension});
     }
+}
+
+async function handleAddCustomExtension() {
+    const extension = $extensionCustomInput.value;
+
+    if (!extension || !extension.length) {
+        alert('확장자를 입력해주세요');
+        return;
+    }
+
+    if (checkedFixedExtensions.includes(extension)) {
+        alert('고정 확장자에서 파일 확장자를 설정해주세요.');
+        return;
+    }
+
+    if (notCheckedFixedExtensions.includes(extension)) {
+        alert('이미 커스텀 확장자에 추가된 확장자입니다.');
+        return;
+    }
+
+    await requestFetch('POST', {name: extension});
+    notCheckedFixedExtensions = [...notCheckedFixedExtensions, extension];
+    $customExtensionSizeSpan.textContent = notCheckedFixedExtensions.length;
+    renderNotCheckedFixedExtensions();
 }
 
 async function requestFetch(method, body) {
