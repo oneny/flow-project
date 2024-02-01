@@ -12,4 +12,8 @@ import com.flow.extension.domain.extension.entity.Extension;
 public interface ExtensionRepository {
 
 	List<Extension> findAll();
+
+	void insertExtension(Extension extension);
+
+	void deleteExtension(Extension extension);
 }

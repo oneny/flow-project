@@ -5,4 +5,14 @@
     <select id="findAll" resultType="Extension">
         SELECT * FROM extension
     </select>
+
+    <insert id="insertExtension" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO extension (name)
+        VALUES (#{name})
+    </insert>
+
+    <delete id="deleteExtension">
+        DELETE FROM extension
+        WHERE name = #{name}
+    </delete>
 </mapper>
